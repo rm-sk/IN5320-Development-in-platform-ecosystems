@@ -17,15 +17,55 @@
 }
 
 /* Elements */
+body{
+    margin: 0;
+    padding: 0;
+}
+
 header{
     background-color: #f7f4f2;
     box-sizing: border-box;
     border: 1px solid #808080;
-    padding: 20px;
+    padding: 1.4vw 0 1.4vw 1.4vw;
+    width: 96vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 2vw;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+main{
+    margin: 2vw;
+    margin-top: 5vw;
+    width: 96vw;
 }
 
 img{
     border: 1px solid #808080;
+}
+
+h1{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+section{
+    width: 100%;
+}
+
+section h1{
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+
+section li{
+    padding: 2rem;
+    border: 1px solid #808080;
+    width: 50%;
+    margin: 0.4rem;
 }
 
 ul{
@@ -51,14 +91,71 @@ a:hover{
 }
 
 /* Classes */
+.links{
+    font-size: 2.5vw;
+}
+
 
 /* IDs */
-#header-info{
-    padding: 10px;
+#name{
+    font-size: 4vw;
 }
 
-#name {
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
+#disp-pic{
+    object-fit: cover;
+    align-items: center;
+    vertical-align: middle;
+    display: flexbox;
 }
 
+/*Responsive*/
+
+@media screen and (max-width: 1500px) and (min-width: 902px){
+    #name, section h1{
+        font-size: 3.5vw;
+    }
+    .links{
+        font-size: 2vw;
+    }
+    
+}
+
+@media screen and (max-width: 902px) and (min-width: 650px){
+    #name, section h1{
+        font-size: 3vw;
+    }
+    .links, section li{
+        font-size: 1.5vw;
+    }
+}
+
+@media screen and (max-width: 650px) and (min-width: 510px){
+    #name, section h1{
+        font-size: 2.5vw;
+    }
+    .links, section li{
+        font-size: 1.5vw;
+    }
+    header{
+        margin-bottom: 1vw;
+    }
+}
+
+@media screen and (max-width: 510px) and (min-width: 0){
+    #name, section h1{
+        font-size: 3.5vw;
+    }
+    .links, section li{
+        font-size: 2vw;
+    }
+    section ul{
+        width: 100%;
+        align-items: center;
+        display: block;
+    }
+    section li{
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0.6rem 0;
+    }
+}
