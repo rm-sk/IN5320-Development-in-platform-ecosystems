@@ -1,0 +1,161 @@
+/* Imported fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200&family=Roboto:wght@300&display=swap');
+
+/* Grid layout */
+.grid-33{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 33%;
+}
+
+.grid-66{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+    width: 66%;
+}
+
+/* Elements */
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #f7f4f2;
+    box-sizing: border-box;
+    border: 1px solid #808080;
+    padding: 1.4vw 0 1.4vw 1.4vw;
+    width: 96vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 2vw;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+main{
+    margin: 2vw;
+    margin-top: 5vw;
+    width: 96vw;
+}
+
+img{
+    border: 1px solid #808080;
+}
+
+h1{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+section{
+    width: 100%;
+}
+
+section h1{
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+
+section li{
+    padding: 2rem;
+    border: 1px solid #808080;
+    width: 50%;
+    margin: 0.4rem;
+}
+
+ul{
+    list-style-type: none;
+    list-style-position: inside;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    /* color: #5b6d8a; */
+    color: #7486a3
+}
+
+/* Classes */
+.links{
+    font-size: 2.5vw;
+}
+
+
+/* IDs */
+#name{
+    font-size: 4vw;
+}
+
+#disp-pic{
+    object-fit: cover;
+    align-items: center;
+    vertical-align: middle;
+    display: flexbox;
+}
+
+/*Responsive*/
+
+@media screen and (max-width: 1500px) and (min-width: 902px){
+    #name, section h1{
+        font-size: 3.5vw;
+    }
+    .links{
+        font-size: 2vw;
+    }
+    
+}
+
+@media screen and (max-width: 902px) and (min-width: 650px){
+    #name, section h1{
+        font-size: 3vw;
+    }
+    .links, section li{
+        font-size: 1.5vw;
+    }
+}
+
+@media screen and (max-width: 650px) and (min-width: 510px){
+    #name, section h1{
+        font-size: 2.5vw;
+    }
+    .links, section li{
+        font-size: 1.5vw;
+    }
+    header{
+        margin-bottom: 1vw;
+    }
+}
+
+@media screen and (max-width: 510px) and (min-width: 0){
+    #name, section h1{
+        font-size: 3.5vw;
+    }
+    .links, section li{
+        font-size: 2vw;
+    }
+    section ul{
+        width: 100%;
+        align-items: center;
+        display: block;
+    }
+    section li{
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0.6rem 0;
+    }
+}
