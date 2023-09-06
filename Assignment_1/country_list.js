@@ -32,3 +32,9 @@ function delete_country(country){
         }
     }
 }
+
+// Searching for letters at the beginning of an element
+// Returns true if the element starts with searchWord, false if not
+function starts_with(element, searchWord){
+    return element.startsWith(searchWord);
+}
