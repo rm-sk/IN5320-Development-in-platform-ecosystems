@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDataQuery } from '@dhis2/app-runtime'
 
 const dataQuery = {
     dataSets: {
@@ -22,5 +23,19 @@ const dataQuery = {
 }
 
 export function Browse() {
+    const { loading, error, data } = useDataQuery(dataQuery)
+    
+    if (error) {
+        return <span>ERROR: {error.message}</span>
+    }
+
+    if (loading) {
+        return <span>Loading...</span>
+    }
+
+    if (data) {
+        console.log(data)
+    }
+
     return <h1>Browse</h1>
 }
