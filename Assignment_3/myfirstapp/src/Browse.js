@@ -22,9 +22,25 @@ const dataQuery = {
     },
 }
 
+function mergeData(data) {
+  return data.dataSets.dataSetElements.map(d => {
+      let matchedValue = data.dataValueSets.dataValues.find(dataValues => {
+          if (dataValues.dataElement == d.dataElement.id) {
+              return true
+          }
+      })
+
+      return {
+          displayName: d.dataElement.displayName,
+          id: d.dataElement.id,
+          value: matchedValue.value,
+      }
+  })
+}
+
 export function Browse() {
     const { loading, error, data } = useDataQuery(dataQuery)
-    
+
     if (error) {
         return <span>ERROR: {error.message}</span>
     }
