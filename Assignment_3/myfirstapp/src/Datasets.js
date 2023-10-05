@@ -32,6 +32,10 @@ const dataQuery = {
         }
     }
 }
+
+// const toggleSubMenu = event => {
+//     console.log(event.target.label);
+// }
   
 export function Datasets(props) {
     const { loading, error, data } = useDataQuery(dataQuery);
@@ -74,31 +78,54 @@ export function Datasets(props) {
 
 
 
-        if (props.table == true){
-            return (
-                <Menu>
-                        {data.res.dataSets.map(row => {
-                            return (
-                                <MenuItem label={row.displayName} onclick={() =>{props.setTable(true)}}></MenuItem>
-                            )
-                        })}
-                    </Menu>
-            )
-        }
+        // if (props.table == true){
+        //     return (
+        //         <Menu>
+        //                 {data.res.dataSets.map(row => {
+        //                     return (
+        //                         <MenuItem label={row.displayName} onclick={() =>{props.setTable(true)}}></MenuItem>
+        //                     )
+        //                 })}
+        //             </Menu>
+        //     )
+        // }
 
-        else {
+        // else {
             return (
                 <div style={{display: 'flex',height: '100%'}}>
                     <aside style={{flexGrow: 0,height: '100%',width: '30vw'}}>
                         <Menu>
                             {data.res.dataSets.map(row => {
                                 return (
-                                    <MenuItem key={row.id} id={row.id} label={row.displayName} /*onclick={() =>{props.handleClick(false)}}*/ onclick={props.handleClick}></MenuItem>
+                                    <MenuItem key={row.id} value={row.id} label={row.displayName} onClick={ event => props.handleClick(event) }/*onclick={() =>{props.handleClick(false)}} onclick={props.handleClick}*/>
+                                        <Table>
+                                            <TableHead>
+                                                <TableRowHead>
+                                                    <TableCellHead>Dsiplay Name</TableCellHead>
+                                                    <TableCellHead>ID</TableCellHead>
+                                                    <TableCellHead>Created</TableCellHead>
+                                                </TableRowHead>
+                                            </TableHead>
+                                            <TableBody>
+                                                {data.res.dataSets.map(row => {
+                                                    if (row.id == props.clickedID) {
+                                                        return (
+                                                            <TableRow key={row.id}>
+                                                                <TableCell>{row.displayName}</TableCell>
+                                                                <TableCell>{row.id}</TableCell>
+                                                                <TableCell>{row.created}</TableCell>
+                                                            </TableRow>
+                                                        )
+                                                    }
+                                                })}
+                                            </TableBody>
+                                        </Table>
+                                    </MenuItem>
                                 )
                             })}
                         </Menu>
                     </aside>
-                    <section style={{flexGrow: 1,height: '100%'}}>
+                    {/* <section style={{flexGrow: 1,height: '100%'}}>
                         <Table>
                             <TableHead>
                                 <TableRowHead>
@@ -121,11 +148,11 @@ export function Datasets(props) {
                                 })}
                             </TableBody>
                         </Table>
-                    </section>
+                    </section> */}
                 </div>
                 
             )
-        }
+        //}
 
         // return (
         //     <div>

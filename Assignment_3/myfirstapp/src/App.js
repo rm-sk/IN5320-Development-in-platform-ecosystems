@@ -8,44 +8,34 @@ import { Navigation } from "./Navigation";
 import { Datasets } from "./Datasets";
 
 function MyApp() {
-const [activePage, setActivePage] = useState("Browse");
-const [tableView, setTableView] = useState(false);
-const [clickedID, setClickedId] = useState("lyLU2wR22tC");
+    const [activePage, setActivePage] = useState("Browse");
+    const [clickedID, setClickedId] = useState("");
 
-function activePageHandler(page) {
-    setActivePage(page);
+    function activePageHandler(page) {
+        setActivePage(page);
+    }
+
+    const handleClick = event => {
+        setClickedId(event.value);
+        console.log(clickedID);
+    };
+
+    useEffect(() => {
+        return (
+            <div className={classes.container}>
+                <div className={classes.left}>
+                    <Navigation
+                        activePage={activePage}
+                        activePageHandler={activePageHandler}
+                    />
+                </div>
+                <div className={classes.right}>
+                    {activePage === "Browse" && <Browse />}
+                    {activePage === "Insert" && <Insert />}
+                    {activePage === "Datasets" && <Datasets handleClick={handleClick} clickedID={clickedID}/>}
+                </div>
+            </div>
+        );
+    }, [tableView, clickedID]);
 }
-
-function changeTableView(view) {
-    setTableView(view);
-    console.log("changed table");
-}
-
-const handleClick = event => {
-    console.log("clicked");
-    setClickedId(event.target.id);
-    // setTableView(view);
-};
-
-useEffect(() => {
-    console.log("change made ",tableView);
-}, [tableView, clickedID]);
-
-return (
-    <div className={classes.container}>
-        <div className={classes.left}>
-            <Navigation
-                activePage={activePage}
-                activePageHandler={activePageHandler}
-            />
-        </div>
-        <div className={classes.right}>
-            {activePage === "Browse" && <Browse />}
-            {activePage === "Insert" && <Insert />}
-            {activePage === "Datasets" && <Datasets table={tableView} handleClick={handleClick} clickedID={clickedID}/>}
-        </div>
-    </div>
-);
-}
-
 export default MyApp;
