@@ -17,25 +17,26 @@ function MyApp() {
 
     const handleClick = event => {
         setClickedId(event.value);
-        console.log(clickedID);
     };
 
     useEffect(() => {
-        return (
-            <div className={classes.container}>
-                <div className={classes.left}>
-                    <Navigation
-                        activePage={activePage}
-                        activePageHandler={activePageHandler}
-                    />
-                </div>
-                <div className={classes.right}>
-                    {activePage === "Browse" && <Browse />}
-                    {activePage === "Insert" && <Insert />}
-                    {activePage === "Datasets" && <Datasets handleClick={handleClick} clickedID={clickedID}/>}
-                </div>
+        
+    }, [clickedID]);
+
+    return (
+        <div className={classes.container}>
+            <div className={classes.left}>
+                <Navigation
+                    activePage={activePage}
+                    activePageHandler={activePageHandler}
+                />
             </div>
-        );
-    }, [tableView, clickedID]);
+            <div className={classes.right}>
+                {activePage === "Browse" && <Browse />}
+                {activePage === "Insert" && <Insert />}
+                {activePage === "Datasets" && <Datasets handleClick={handleClick} clickedID={clickedID}/>}
+            </div>
+        </div>
+    );
 }
 export default MyApp;
