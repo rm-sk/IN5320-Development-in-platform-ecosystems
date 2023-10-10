@@ -67,25 +67,25 @@ export function Browse() {
 
 		return (
 			<Table>
-					<TableHead>
-						<TableRowHead>
-							<TableCellHead>Display Name</TableCellHead>
-							<TableCellHead>Value</TableCellHead>
-							<TableCellHead>ID</TableCellHead>
-						</TableRowHead>
-					</TableHead>
-					<TableBody>
-						{mergedData.map(row => {
-							return (
-								<TableRow key={row.id}>
-									<TableCell>{row.displayName}</TableCell>
-									<TableCell>{row.value}</TableCell>
-									<TableCell>{row.id}</TableCell>
-								</TableRow>
-							)
-						})}
-					</TableBody>
-				</Table>
+				<TableHead>
+					<TableRowHead>
+						<TableCellHead>Display Name</TableCellHead>
+						<TableCellHead>Value</TableCellHead>
+						<TableCellHead>ID</TableCellHead>
+					</TableRowHead>
+				</TableHead>
+				<TableBody>
+					{mergedData.map(row => {
+						return (
+							<TableRow key={row.id}>
+								<TableCell>{row.displayName}</TableCell>
+								<TableCell>{row.value}</TableCell>
+								<TableCell>{row.id}</TableCell>
+							</TableRow>
+						)
+					})}
+				</TableBody>
+			</Table>
 		)
     }
 }

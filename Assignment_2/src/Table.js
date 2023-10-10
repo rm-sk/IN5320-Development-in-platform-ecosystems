@@ -1,4 +1,6 @@
-function Table(props) {
+import React from 'react'
+
+function ApiTable(props) {
 	console.log(props.apiData);
 	
 	if (!props.apiData.results) {
@@ -8,27 +10,31 @@ function Table(props) {
 	} else {
 		
 		// Write your code here:
-		return <table>
-			<tbody>
-				<tr id="top-row"> 
-					<th>Country</th>
-					{props.apiData.results.map(entry => {return <td> {entry.Country} </td>})}
-				</tr>
-				<tr>
-					<th>Continent</th>
-					{props.apiData.results.map(entry => {return <td> {entry.Continent} </td>})}
-				</tr>
-				<tr>
-					<th>Population</th>
-					{props.apiData.results.map(entry => {return <td> {entry.Population} </td>})}
-				</tr>
-				<tr>
-					<th>Population Growth</th>
-					{props.apiData.results.map(entry => {return <td> {entry.PopulationGrowth} </td>})}
-				</tr>
-			</tbody>
-		</table>;
+		return (
+			<table>
+				<thead>
+					<tr>
+						<th>Country</th>
+						<th>Continent</th>
+						<th>Population</th>
+						<th>Population Growth</th>
+					</tr>
+				</thead>
+				<tbody>
+					{props.apiData.results.map(row => {
+						return (
+							<tr key={row.id}>
+								<td>{row.Country}</td>
+								<td>{row.Continent}</td>
+								<td>{row.Population}</td>
+								<td>{row.PopulationGrowth}</td>
+							</tr>
+						)
+					})}
+				</tbody>
+			</table>
+		)
 	}
 }
 
-export default Table;
+export default ApiTable;

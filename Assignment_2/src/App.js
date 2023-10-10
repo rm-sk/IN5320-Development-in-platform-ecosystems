@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import SearchBar from "./SearchBar.js";
-import Table from "./Table.js";
+import ApiTable from "./Table.js";
 import PageSize from "./PageSize";
 import Pagination from "./Pagination";
 
@@ -66,7 +66,7 @@ function App() {
 	<div className="App">
 		<h1>Country lookup</h1>
 		<SearchBar set_search={set_search} search_api={search_api}/>
-		<Table apiData={apiData} />
+		<ApiTable apiData={apiData} />
 		<PageSize value={pageSize} set_page_size={set_page_size}/>
 		<Pagination prev={prev_page} next={next_page} pageNumber={pageNumber} apiData={apiData}/>
 	</div>
