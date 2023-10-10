@@ -1,6 +1,15 @@
 import React from 'react'
 import { useDataQuery } from '@dhis2/app-runtime'
 import { Menu, MenuItem } from '@dhis2/ui'
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableCellHead,
+	TableHead,
+	TableRow,
+	TableRowHead,
+} from '@dhis2/ui'
 
 import { useState } from "react";
 
@@ -23,8 +32,12 @@ const dataQuery = {
         }
     }
 }
+
+// const toggleSubMenu = event => {
+//     console.log(event.target.label);
+// }
   
-export function Datasets() {
+export function Datasets(props) {
     const { loading, error, data } = useDataQuery(dataQuery);
 
     if (error) {
@@ -37,51 +50,43 @@ export function Datasets() {
 
     if (data) {
         console.log("API response:",data)
-        const [sideMenu, setSideMenu] = useState("none");
-        const [fullMenu, setFullMenu] = useState("block");
-
-        
-
-       
-
-        // const sideMenu = 'block';
-        // const fullMenu = 'none';
-
-        const seeTable = () => {
-            setFullMenu("none");
-            setSideMenu("block");
-        };
-
-        const hideTable = () => {
-            setFullMenu("block");
-            setSideMenu("none");
-        };
-
-        useEffect(() => {
-            console.log('hello world');
-        }, []);
-
         return (
-            <div>
-                <div style={{display: fullMenu}}>
+            <div style={{display: 'flex',height: '100%'}}>
+                <aside style={{flexGrow: 0,height: '100%',width: '30vw'}}>
                     <Menu>
                         {data.res.dataSets.map(row => {
                             return (
-                                <MenuItem label={row.displayName} onclick={() =>{seeTable}}></MenuItem>
-                            )
-                        })}
-                    </Menu>
-                </div>
-                
-                <aside style={{flexGrow: 0,height: '100%',width: 300,display: sideMenu}}>
-                    <Menu>
-                        {data.res.dataSets.map(row => {
-                            return (
-                                <MenuItem label={row.displayName}></MenuItem>
+                                <MenuItem key={row.id} value={row.id} label={row.displayName} onClick={ event => props.handleClick(event) }/*onclick={() =>{props.handleClick(false)}} onclick={props.handleClick}*/>
+                                    
+                                </MenuItem>
                             )
                         })}
                     </Menu>
                 </aside>
+                <section>
+                    {data.res.dataSets.map(row => {
+                        if (row.id == props.clickedID) {
+                            return (
+                                <Table>
+                                    <TableHead>
+                                        <TableRowHead>
+                                            <TableCellHead>Dsiplay Name</TableCellHead>
+                                            <TableCellHead>ID</TableCellHead>
+                                            <TableCellHead>Created</TableCellHead>
+                                        </TableRowHead>
+                                    </TableHead>
+                                    <TableBody>
+                                        <TableRow key={row.id}>
+                                            <TableCell>{row.displayName}</TableCell>
+                                            <TableCell>{row.id}</TableCell>
+                                            <TableCell>{row.created}</TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            )
+                        }
+                    })}
+                </section>
             </div>
         )
     }
